@@ -5,7 +5,6 @@ import meta_params as mp
 # main parameters to set
 # these are set in the Jupyter notebook (or the meta_params module)
 H0 = mp.H0                                    # initial column height (m)
-w0 = mp.w0                                    # compaction rate scale (m/s)
 phi0 = mp.phi0                                # initial porosity 
 eta = mp.eta                                  # Newtonian viscosity (Pa s)
 k0 = mp.k0                                    # permeability pre-factor (m^2)
@@ -20,10 +19,10 @@ zeta = eta/phi0                               # initial bulk viscosity (Pa s)
 a,b = 3,2                                     # permeability exponents
 m,n = 2,2                                     # plasticity exponents
 delta = np.sqrt((k0/mu)*((4./3.)*eta + zeta)) # compaction length (m)
+w0 = (k0*(rho_s - rho_f)*g)/mu
 
 # main nondimensional parameters:
-beta = k0*g*(rho_s - rho_f)/(mu*w0)
-gamma = k0*Pi0/(mu*w0*H0)
+gamma = Pi0/(g*H0*(rho_s - rho_f))
 eps = H0**2/delta**2 
 
 # domain parameters:
