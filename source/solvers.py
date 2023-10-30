@@ -7,7 +7,7 @@ from dolfinx.fem.petsc import NonlinearProblem
 from dolfinx.mesh import locate_entities_boundary
 from dolfinx.nls.petsc import NewtonSolver
 from mpi4py import MPI
-from params import beta, dt, eps, gamma, nt, nz, phi_min, theta
+from params import dt, eps, gamma, nt, nz, phi_min, theta
 from petsc4py import PETSc
 from post_process import get_stress, interp
 from ufl import Dx, FiniteElement, TestFunction, TestFunctions, ds, dx, split
@@ -32,7 +32,7 @@ def weak_form(w,w_t,w_n,phi,phi_t,phi_n,bc_top):
 
 def weak_form_vel(w,w_t,phi,bc_top):
     # Weak form of the momentum balance
-    F_w =  (eps/K(phi))*w*w_t*dx + alpha(phi)*Dx(w,0)*Dx(w_t,0)*dx  + eps*beta*(1-phi)*w_t*dx
+    F_w =  (eps/K(phi))*w*w_t*dx + alpha(phi)*Dx(w,0)*Dx(w_t,0)*dx  + eps*(1-phi)*w_t*dx
     F_w += -eps*gamma*Pi(phi)*Dx(w_t,0)*dx
 
     # add stress BC if w is not prescribed at top boundary:
