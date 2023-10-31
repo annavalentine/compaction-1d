@@ -19,11 +19,11 @@ zeta = eta/phi0                               # initial bulk viscosity (Pa s)
 a,b = 3,2                                     # permeability exponents
 m,n = 2,2                                     # plasticity exponents
 delta = np.sqrt((k0/mu)*((4./3.)*eta + zeta)) # compaction length (m)
-w0 = (k0*(rho_s - rho_f)*g)/mu
+w0 = (k0*(rho_s - rho_f)*g)/mu                # for constant compaction velocity, set equal to w0
 
 # main nondimensional parameters:
 gamma = Pi0/(g*H0*(rho_s - rho_f))
-eps = H0**2/delta**2 
+eps = H0**2/delta**2                          # doesn't this need to be different? 
 
 # domain parameters:
 nz = 500                                      # Number of elements in z direction
